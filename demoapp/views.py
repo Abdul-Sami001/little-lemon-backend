@@ -2,13 +2,27 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from demoapp.forms import ApplicationForm
+from demoapp.forms import LogForm, BookingForm
 
 
 def form_view(request):
-    form = ApplicationForm
+    form = LogForm()
+    if request.method == "POST":
+        form = LogForm(request.POST)
+        if form.is_valid():
+            form.save()
     context = {"form": form}
     return render(request, "home.html", context)
+
+
+def reservation(request):
+    form = BookingForm()
+    if request.method == "POST":
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save()
+    content = {"form": form}
+    return render(request, "reservation.html", content)
 
 
 def main(request, name):

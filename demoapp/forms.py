@@ -1,14 +1,14 @@
 from django import forms
-
-CHOICES = (
-    ("1", "Morning"),
-    ("2", "Afternoon"),
-    ("3", "Night"),
-)
+from .models import Logger, Booking
 
 
-class ApplicationForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    fname = forms.CharField(max_length=50)
-    Shifts = forms.ChoiceField(choices=CHOICES)
-    time_log = forms.TimeField()
+class LogForm(forms.ModelForm):
+    class Meta:
+        model = Logger
+        fields = ["name", "fname", "time_log"]
+
+
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = "__all__"

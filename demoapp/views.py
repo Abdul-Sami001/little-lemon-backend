@@ -5,6 +5,10 @@ from django.http import HttpResponse
 from demoapp.forms import LogForm, BookingForm
 
 
+def about(request):
+    return render(request, "about.html")
+
+
 def form_view(request):
     form = LogForm()
     if request.method == "POST":

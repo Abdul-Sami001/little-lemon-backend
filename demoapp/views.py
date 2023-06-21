@@ -9,6 +9,10 @@ def about(request):
     return render(request, "about.html")
 
 
+def menu(request):
+    return render(request, "menu.html")
+
+
 def form_view(request):
     form = LogForm()
     if request.method == "POST":
